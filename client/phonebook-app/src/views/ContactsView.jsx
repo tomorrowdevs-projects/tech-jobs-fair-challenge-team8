@@ -16,7 +16,7 @@ const ContactsView = () => {
 
   return (
     <Container>
-      <h1>Contacts</h1>
+      <h3 className="mt-4 mb-3 font-weight-bold">Contacts</h3>
       <ContactsFilter onFiltersChange={setFilters} />
       <ContactsTable contacts={contacts} />
     </Container>

@@ -25,17 +25,17 @@ const ContactsFilter = ({ onFiltersChange }) => {
       </Col>
       <Col>
         <Form.Control
-          name="address"
+          name="email"
           type="text"
-          placeholder="Search by address"
+          placeholder="Search by email"
           onChange={handleFilterChange}
         />
       </Col>
       <Col>
         <Form.Control
-          name="email"
+          name="address"
           type="text"
-          placeholder="Search by email"
+          placeholder="Search by address"
           onChange={handleFilterChange}
         />
       </Col>
