@@ -18,11 +18,23 @@ export const useContacts = (filters) => {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
+
+    const filterContacts = (contact) => {
+      return Object.keys(filters).every(key => {
+        // Skip filtering for this criterion if the filter value is empty
+        if (!filters[key]) return true;
+        // Otherwise, check if the contact matches the filter value (case-insensitive)
+        return contact[key]?.toLowerCase().includes(filters[key].toLowerCase());
+      });
+    };
+
+
     // Simulate an API call
     setTimeout(() => {
-      setContacts(mockContacts);
+      const filteredContacts = mockContacts.filter(filterContacts);
+      setContacts(filteredContacts);
     }, 1000); // simulate a delay
-  }, []); // The empty array ensures this effect runs only once
+  }, [filters]); // The empty array ensures this effect runs only once
 
   return contacts;
 };

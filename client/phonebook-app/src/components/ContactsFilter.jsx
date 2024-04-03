@@ -1,6 +1,7 @@
 import { Row, Col, Form } from "react-bootstrap";
 
 const ContactsFilter = ({ onFiltersChange }) => {
+  
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     console.log(`Filter changed - ${name}: ${value}`);
