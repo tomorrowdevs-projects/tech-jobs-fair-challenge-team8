@@ -4,14 +4,14 @@ import ContactDetailsModal from "./ContactDetailsModal";
 import ContactCard from "./ContactCard";
 
 const ContactsGrid = ({ contacts }) => {
-  const [selectedContact, setSelectedContact] = useState(null);
+  const [selectedContactId, setSelectedContactId] = useState(null);
 
   const handleShowDetails = (contact) => {
-    setSelectedContact(contact);
+    setSelectedContactId(contact.id);
   };
 
   const handleCloseModal = () => {
-    setSelectedContact(null);
+    setSelectedContactId(null);
   };
 
   return (
@@ -28,8 +28,8 @@ const ContactsGrid = ({ contacts }) => {
       </Row>
 
       <ContactDetailsModal
-        contact={selectedContact}
-        show={selectedContact != null}
+        contactId={selectedContactId}
+        show={selectedContactId != null}
         onHide={handleCloseModal}
       />
     </>
