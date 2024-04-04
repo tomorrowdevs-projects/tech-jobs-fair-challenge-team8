@@ -1,7 +1,7 @@
 import { Row, Col, Form } from "react-bootstrap";
 
 const ContactsFilter = ({ onFiltersChange }) => {
-  
+
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     console.log(`Filter changed - ${name}: ${value}`);
@@ -18,9 +18,17 @@ const ContactsFilter = ({ onFiltersChange }) => {
     <Row className="mb-3">
       <Col>
         <Form.Control
-          name="name"
+          name="firstName"
           type="text"
-          placeholder="Search by name"
+          placeholder="Search by first name"
+          onChange={handleFilterChange}
+        />
+      </Col>
+      <Col>
+        <Form.Control
+          name="lastName"
+          type="text"
+          placeholder="Search by last name"
           onChange={handleFilterChange}
         />
       </Col>
