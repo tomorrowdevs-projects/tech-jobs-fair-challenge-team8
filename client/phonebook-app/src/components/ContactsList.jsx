@@ -1,15 +1,13 @@
-import { ListGroup } from 'react-bootstrap';
-import { useState } from 'react';
-import ContactDetailsModal from './ContactDetailsModal';
+import { ListGroup } from "react-bootstrap";
+import { useState } from "react";
+import ContactDetailsModal from "./ContactDetailsModal";
 
 const ContactsList = ({ contacts }) => {
-
   const [selectedContact, setSelectedContact] = useState(null);
 
   const handleShowDetails = (contact) => {
-    console.log("Show details for contact:", contact);
     setSelectedContact(contact);
-  }
+  };
 
   const handleCloseModal = () => {
     setSelectedContact(null);
@@ -25,9 +23,16 @@ const ContactsList = ({ contacts }) => {
             onClick={() => handleShowDetails(contact)}
             className="d-flex justify-content-between align-items-center"
           >
-            <div className="ms-2 me-auto">
-              <div className="fw-bold">{contact.firstName} {contact.lastName}</div>
-              {contact.company} - {contact.position}
+            <div className="col-6 col-md-3">
+              <strong>
+                {contact.firstName} {contact.lastName}
+              </strong>
+            </div>
+            <div className="col-md-2">{contact.company}</div>
+            <div className="col-md-2 d-none d-md-block">{contact.position}</div>
+            <div className="col-md-3 d-none d-lg-block">{contact.email}</div>
+            <div className="col-md-2 d-none d-xl-block">
+              {contact.telephoneNumber}
             </div>
           </ListGroup.Item>
         ))}

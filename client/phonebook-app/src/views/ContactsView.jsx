@@ -1,25 +1,26 @@
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import ContactsFilter from "../components/ContactsFilter";
-import ContactsList from "../components/ContactsList";
+import ContactsGrid from "../components/ContactsGrid";
 import { useContacts } from "../hooks/useContacts"; // Assuming the custom hook's path
+import AddContactButton from "../components/AddContactButton";
 
 const ContactsView = () => {
-  const [filters, setFilters] = useState({
-    firstName: "",
-    lastName: "",
-    address: "",
-    email: "",
-    company: "",
-    position: "",
-  });
-  const contacts = useContacts(filters);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const contacts = useContacts(searchTerm);
 
   return (
     <Container>
-      <h3 className="mt-4 mb-3 font-weight-bold">Contacts</h3>
-      <ContactsFilter onFiltersChange={setFilters} />
-      <ContactsList contacts={contacts} />
+      <Row className="mt-4 mb-4">
+        <Col className="col">
+          <ContactsFilter onSearchTermChange={setSearchTerm} />
+        </Col>
+        <Col className="col-auto">
+          <AddContactButton />
+        </Col>
+      </Row>
+      <ContactsGrid contacts={contacts} />
     </Container>
   );
 };

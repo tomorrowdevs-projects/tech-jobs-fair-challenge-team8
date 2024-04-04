@@ -1,70 +1,17 @@
-import { Row, Col, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
-const ContactsFilter = ({ onFiltersChange }) => {
-
-  const handleFilterChange = (e) => {
-    const { name, value } = e.target;
-    console.log(`Filter changed - ${name}: ${value}`);
-    onFiltersChange((prevFilters) => {
-      const newFilters = {
-        ...prevFilters,
-        [name]: value,
-      };
-      console.log("New filters:", newFilters);
-      return newFilters;
-    });
+const ContactsFilter = ({ onSearchTermChange }) => {
+  const handleSearchTermChange = (e) => {
+    console.log(`Search term changed - ${e.target.value}`);
+    onSearchTermChange(e.target.value);
   };
   return (
-    <Row className="mb-3">
-      <Col>
-        <Form.Control
-          name="firstName"
-          type="text"
-          placeholder="Search by first name"
-          onChange={handleFilterChange}
-        />
-      </Col>
-      <Col>
-        <Form.Control
-          name="lastName"
-          type="text"
-          placeholder="Search by last name"
-          onChange={handleFilterChange}
-        />
-      </Col>
-      <Col>
-        <Form.Control
-          name="email"
-          type="text"
-          placeholder="Search by email"
-          onChange={handleFilterChange}
-        />
-      </Col>
-      <Col>
-        <Form.Control
-          name="address"
-          type="text"
-          placeholder="Search by address"
-          onChange={handleFilterChange}
-        />
-      </Col>
-      <Col>
-        <Form.Control
-          name="company"
-          type="text"
-          placeholder="Search by company"
-          onChange={handleFilterChange}
-        />
-      </Col>
-      <Col>
-        <Form.Control
-          name="position"
-          type="text"
-          placeholder="Search by position"
-          onChange={handleFilterChange}
-        />
-      </Col>
-    </Row>
+    <Form.Control
+      name="firstName"
+      type="text"
+      placeholder="Search contacts"
+      onChange={handleSearchTermChange}
+    />
   );
 };
 
