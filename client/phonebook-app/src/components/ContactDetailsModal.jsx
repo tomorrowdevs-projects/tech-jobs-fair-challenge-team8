@@ -1,4 +1,5 @@
-import { Modal, Spinner } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
+import LoaderDots from "./LoaderDots";
 import { useContactById } from "../hooks/useContactById";
 
 const ContactDetailsModal = ({ contactId, show, onHide }) => {
@@ -8,15 +9,31 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
     <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
         <Modal.Title>
-          {isLoading ? "" : `${contact?.firstName} ${contact?.lastName}`}
+          {isLoading ? (
+            <LoaderDots />
+          ) : (
+            `${contact?.firstName} ${contact?.lastName}`
+          )}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {isLoading ? (
-          <div className="text-center">
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
+          <div>
+            <p>
+              Email: <LoaderDots />
+            </p>
+            <p>
+              Phone: <LoaderDots />
+            </p>
+            <p>
+              Address: <LoaderDots />
+            </p>
+            <p>
+              Company: <LoaderDots />
+            </p>
+            <p>
+              Position: <LoaderDots />
+            </p>
           </div>
         ) : (
           <>

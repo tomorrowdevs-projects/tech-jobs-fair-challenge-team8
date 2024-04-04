@@ -1,0 +1,32 @@
+@keyframes blink {
+  0% {
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.loader-container {
+  display: inline-block;
+}
+
+.loader-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 0 2px;
+  border-radius: 50%;
+  background-color: #000; /* Customize the color as needed */
+  animation: blink 1.4s infinite both;
+}
+
+.loader-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.loader-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
