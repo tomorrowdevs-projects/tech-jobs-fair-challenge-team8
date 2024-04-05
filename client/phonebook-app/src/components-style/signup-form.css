@@ -1,0 +1,13 @@
+.signup-container {
+	background-color: #212529;
+  }
+
+  .signup-form {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+  }
+
+  .btn-block {
+	width: 100%;
+  }

@@ -4,7 +4,7 @@ import { UserProvider } from "./user-management/UserProvider";
 import Header from "./components/Header";
 import ContactsView from "./views/ContactsView";
 import UserRoute from "./route-guards/UserRoute";
-import Signup from "./components/Signup";
+import SignupForm from "./components/SignupForm";
 import LoginView from "./views/LoginView";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -15,7 +15,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<LoginView />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/signup" element={<SignupForm />}></Route>
           <Route
             path="/contacts"
             element={<UserRoute element={<ContactsView />} />}
