@@ -80,7 +80,7 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
         <Modal.Footer>
           <Button
             variant="secondary"
-            onClick={() => console.log("Edit logic here")}
+            onClick={() => console.log("Edit contact")}
           >
             Edit
           </Button>

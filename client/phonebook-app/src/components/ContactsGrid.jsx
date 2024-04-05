@@ -13,7 +13,6 @@ const ContactsGrid = ({ contacts }) => {
   const handleCloseModal = () => {
     setSelectedContactId(null);
   };
-  console.log(contacts);
 
   return (
     <>
