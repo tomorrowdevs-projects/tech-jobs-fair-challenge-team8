@@ -10,13 +10,10 @@ export const useContacts = (searchTerm) => {
       if (!searchTerm) return true;
       // Check if all the search terms match the contact
       if (
-        contact.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        contact.surname.toLowerCase().includes(searchTerm.toLowerCase()) ||
         contact.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.position.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.telephoneNumber.toLowerCase().includes(searchTerm.toLowerCase())
+        contact.job_position.toLowerCase().includes(searchTerm.toLowerCase())
       ) {
         return true;
       }
