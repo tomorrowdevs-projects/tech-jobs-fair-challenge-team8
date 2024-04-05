@@ -1,0 +1,6 @@
+.loader-container {
+  min-height: 30px; /* Adjust as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

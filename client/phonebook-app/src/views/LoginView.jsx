@@ -6,8 +6,6 @@ export default function LoginView() {
   const navigate = useNavigate();
   const { login, error } = useLogin(navigate);
 
-  console.log(login);
-
   const handleLogin = (email, password) => {
     login(email, password);
   };

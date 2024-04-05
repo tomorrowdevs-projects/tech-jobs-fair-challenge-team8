@@ -3,31 +3,30 @@ import { mockApiData } from "../mock-api-data/mock-api-data";
 
 export const useContacts = (searchTerm) => {
   const [contacts, setContacts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const filterContacts = (contact) => {
       if (!searchTerm) return true;
       // Check if all the search terms match the contact
       if (
-        contact.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        contact.surname.toLowerCase().includes(searchTerm.toLowerCase()) ||
         contact.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.position.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.telephoneNumber.toLowerCase().includes(searchTerm.toLowerCase())
+        contact.job_position.toLowerCase().includes(searchTerm.toLowerCase())
       ) {
         return true;
       }
       return false;
     };
 
-    // Simulate an API call
+    setIsLoading(true);
     setTimeout(() => {
       const filteredContacts = mockApiData.filter(filterContacts);
       setContacts(filteredContacts);
-    }, 1000); // simulate a delay
+      setIsLoading(false);
+    }, 2000);
   }, [searchTerm]); // The empty array ensures this effect runs only once
 
-  return contacts;
+  return { contacts, isLoading };
 };

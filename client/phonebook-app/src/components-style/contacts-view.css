@@ -1,0 +1,6 @@
+.loader-stripe-container {
+  min-height: 20px; /* Example height, adjust based on your LoaderDots size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

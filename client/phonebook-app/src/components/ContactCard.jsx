@@ -9,16 +9,11 @@ const ContactCard = ({ contact, handleShowDetails }) => {
     >
       <Card.Body>
         <Card.Title>
-          {contact.firstName} {contact.lastName}
+          {contact.name} {contact.surname}
         </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
-          {contact.company} - {contact.position}
+          {contact.company} - {contact.job_position}
         </Card.Subtitle>
-        <Card.Text>
-          {contact.email}
-          <br />
-          {contact.telephoneNumber}
-        </Card.Text>
       </Card.Body>
     </Card>
   );
