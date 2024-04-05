@@ -3,6 +3,7 @@ import { mockApiData } from "../mock-api-data/mock-api-data";
 
 export const useContacts = (searchTerm) => {
   const [contacts, setContacts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const filterContacts = (contact) => {
@@ -22,12 +23,13 @@ export const useContacts = (searchTerm) => {
       return false;
     };
 
-    // Simulate an API call
+    setIsLoading(true);
     setTimeout(() => {
       const filteredContacts = mockApiData.filter(filterContacts);
       setContacts(filteredContacts);
-    }, 1000); // simulate a delay
+      setIsLoading(false);
+    }, 2000);
   }, [searchTerm]); // The empty array ensures this effect runs only once
 
-  return contacts;
+  return { contacts, isLoading };
 };
