@@ -5,8 +5,24 @@ export function useLogin(navigate) {
   const { setUser } = useUser();
   const [error, setError] = useState(null);
 
-  async function loginApi(email, password) {
-    // Replace with your actual login API call logic
+  // eslint-disable-next-line no-unused-vars
+  const apiCall = async (email, password) => {
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Invalid credentials");
+    }
+
+    return await response.json();
+  };
+
+  const mockApiCall = async (email, password) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (email === "admin@admin.com" && password === "password") {
@@ -21,19 +37,18 @@ export function useLogin(navigate) {
         }
       }, 1000);
     });
-  }
+  };
 
-  const login = async (email, password) => {
+  const login = async (email, password, onSuccess) => {
     try {
-      const user = await loginApi(email, password);
-      setUser(user);
-      navigate("/contacts");
+      // Replace with apiCall when backend is ready
+      const user = await mockApiCall(email, password);
 
-      // Handle post-login actions here (e.g., redirecting)
+      setUser(user);
+      if (onSuccess) onSuccess();
     } catch (error) {
       console.error(error);
       setError("Invalid login credentials. Please try again.");
-      // Handle login error (e.g., showing an error message)
     }
   };
 
