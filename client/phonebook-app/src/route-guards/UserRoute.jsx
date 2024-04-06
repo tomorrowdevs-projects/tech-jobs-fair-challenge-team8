@@ -6,7 +6,7 @@ const UserRoute = ({ element: Component }) => {
   const { user } = useUser();
 
   // Return either the component for the route or redirect to login
-  return user ? Component : <Navigate to="/" replace />;
+  return user ? Component : <Navigate to="/login" replace />;
 };
 
 export default UserRoute;

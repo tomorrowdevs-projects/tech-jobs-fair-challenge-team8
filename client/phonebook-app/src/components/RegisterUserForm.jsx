@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import "../components-style/signup-form.css"; // Importa il file CSS per lo stile personalizzato
 
-function SignupForm() {
+function RegisterUserForm() {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -30,57 +30,44 @@ function SignupForm() {
   };
 
   return (
-    <Container
-      fluid
-      className='signup-container'
-      bg='dark'
-      variant='dark'
-    >
+    <Container fluid className="signup-container" bg="dark" variant="dark">
       <Row
-        className='justify-content-center align-items-center'
+        className="justify-content-center align-items-center"
         style={{ height: "100vh" }}
       >
-        <Col
-          xs={12}
-          sm={8}
-          md={6}
-          lg={4}
-        >
-          <Form
-            onSubmit={handleSubmit}
-            className='signup-form'
-          >
-            <h3 className='text-center'>Sign Up</h3>
-            <Form.Group controlId='formUsername'>
+        <Col xs={12} sm={8} md={6} lg={4}>
+          <Form onSubmit={handleSubmit} className="signup-form">
+            <h3 className="text-center">Register User</h3>
+            <Form.Group controlId="formUsername">
               <Form.Label>Username:</Form.Label>
               <Form.Control
-                type='text'
-                name='username'
-                placeholder='Enter Username'
+                type="text"
+                name="username"
+                placeholder="Enter Username"
                 value={formData.username}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
 
-            <Form.Group controlId='formEmail'>
+            <Form.Group controlId="formEmail">
               <Form.Label>Email:</Form.Label>
               <Form.Control
-                type='email'
-                name='email'
-                placeholder='Enter Email'
+                type="email"
+                name="email"
+                placeholder="Enter Email"
                 value={formData.email}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
 
-            <Form.Group controlId='formPassword'>
+            <Form.Group controlId="formPassword">
               <Form.Label>Password:</Form.Label>
               <Form.Control
-                type='password'
-                name='password'
-                placeholder='Enter Password'
+                type="password"
+                name="password"
+                placeholder="Enter Password"
                 value={formData.password}
                 onChange={handleChange}
                 required
@@ -88,9 +75,9 @@ function SignupForm() {
             </Form.Group>
 
             <Button
-              variant='primary'
-              type='submit'
-              className='btn-block btn-dark'
+              variant="primary"
+              type="submit"
+              className="btn-block btn-dark"
             >
               Sign up
             </Button>
@@ -101,4 +88,4 @@ function SignupForm() {
   );
 }
 
-export default SignupForm;
+export default RegisterUserForm;

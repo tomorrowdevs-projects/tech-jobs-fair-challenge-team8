@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 import "../components-style/login.css";
 
 export default function LoginForm({ onLogin, errorMessage }) {
@@ -17,36 +18,31 @@ export default function LoginForm({ onLogin, errorMessage }) {
   };
 
   return (
-    <div className="form-container p-5 rounded bg-white">
-      {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
-      <form onSubmit={handleSubmit}>
-        <h3 className="text-center">Sign In</h3>
-        <div className="mb-2">
-          <label htmlFor="email">Email</label>
-          <input
+    <div className="p-5 rounded bg-white">
+      <Form onSubmit={handleSubmit}>
+        <h3 className="text-center mb-4">Sign In</h3>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
             type="email"
-            placeholder="Enter Email"
-            className="form-control"
+            placeholder="Enter email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-        </div>
-        <div className="mb-2">
-          <label htmlFor="password">Password</label>
-          <input
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
             type="password"
-            placeholder="Enter Password"
-            className="form-control"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
-        <div className="d-grid">
-          <button className="btn btn-dark" type="submit">
-            Sign in
-          </button>
-        </div>
-      </form>
+        </Form.Group>
+        <Button variant="dark" type="submit" className="mt-3 w-100">
+          Sign in
+        </Button>
+      </Form>
     </div>
   );
 }
