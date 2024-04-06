@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { mockApiData } from "../mock-api-data/mock-api-data";
+import { mockApiData } from "../api-data/mock-api-data";
 
 export const useContactById = (contactId) => {
   const [contact, setContact] = useState(null);
