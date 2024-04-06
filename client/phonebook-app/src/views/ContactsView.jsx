@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import ContactsFilter from "../components/ContactsFilter";
 import ContactsGrid from "../components/ContactsGrid";
-import { useContacts } from "../hooks/useContacts"; // Assuming the custom hook's path
+import { useContacts } from "../api-hooks/useContacts"; // Assuming the custom hook's path
 import AddContactButton from "../components/AddContactButton";
 import LoaderDots from "../components/LoaderDots";
 

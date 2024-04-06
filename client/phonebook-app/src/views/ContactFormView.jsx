@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Alert } from "react-bootstrap";
 import ContactForm from "../components/ContactForm";
-import { useSaveContact } from "../hooks/useSaveContact";
+import { useSaveContact } from "../api-hooks/useSaveContact";
 import LoaderDots from "../components/LoaderDots";
 import "../components-style/contact-form-view.css";
 

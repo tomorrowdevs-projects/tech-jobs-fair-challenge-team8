@@ -1,6 +1,6 @@
 import { Row, Col, Modal, Button } from "react-bootstrap";
 import LoaderDots from "./LoaderDots";
-import { useContactById } from "../hooks/useContactById";
+import { useContactById } from "../api-hooks/useContactById";
 import { useState } from "react";
 
 const ContactDetailsModal = ({ contactId, show, onHide }) => {
