@@ -29,7 +29,7 @@ export const useDeleteContactById = () => {
       await mockApiCall(contactId);
     } catch (error) {
       setError(error.message);
-    } finally {
+
       // Clear the error after 3 seconds
       setTimeout(() => {
         setError(null);

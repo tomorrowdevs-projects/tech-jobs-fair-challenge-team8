@@ -35,6 +35,11 @@ export const useContactById = (contactId) => {
       } catch (error) {
         setError(error.message);
         console.log(error);
+
+        // Clear the error after 3 seconds
+        setTimeout(() => {
+          setError(null);
+        }, 3000);
       } finally {
         setIsLoading(false);
       }

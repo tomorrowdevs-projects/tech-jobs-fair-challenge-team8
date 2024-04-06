@@ -51,6 +51,12 @@ export const useContacts = (searchTerm) => {
         setContacts(data);
       } catch (error) {
         setError("Failed to fetch contacts. Please try again later.");
+        console.error(error);
+
+        // Clear the error message after 3 seconds
+        setTimeout(() => {
+          setError(null);
+        }, 3000);
       } finally {
         setIsLoading(false);
       }

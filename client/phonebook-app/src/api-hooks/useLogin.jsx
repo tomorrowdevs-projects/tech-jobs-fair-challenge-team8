@@ -49,6 +49,8 @@ export function useLogin(navigate) {
     } catch (error) {
       console.error(error);
       setError("Invalid login credentials. Please try again.");
+
+      // Clear the error message after 3 seconds
       setTimeout(() => {
         setError(null);
       }, 3000);

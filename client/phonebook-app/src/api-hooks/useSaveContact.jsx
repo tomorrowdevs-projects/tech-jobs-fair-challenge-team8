@@ -2,7 +2,7 @@ import { useState } from "react";
 import { saveContactUrl } from "../api-data/apiUrls";
 
 export const useSaveContact = () => {
-  const [statusMessage, setStatusMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   // eslint-disable-next-line no-unused-vars
@@ -21,10 +21,15 @@ export const useSaveContact = () => {
   };
 
   const mockApiCall = async (formData) => {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       console.log("Mock saving contact:", formData);
+
       setTimeout(() => {
-        resolve("Contact saved successfully (mock)");
+        if (true) {
+          resolve("Contact saved successfully (mock)");
+        } else {
+          reject("Simulated fetch error");
+        }
       }, 1000);
     });
   };
@@ -34,17 +39,18 @@ export const useSaveContact = () => {
     try {
       // Replace with apiCall when ready.
       await mockApiCall(formData);
-      setStatusMessage("Contact saved successfully");
     } catch (error) {
-      setStatusMessage(error.message);
+      setErrorMessage("Server error. Please try again later.");
+      console.error(error);
+
+      // Clear the status message after 3 seconds
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 3000);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const clearMessage = () => {
-    setStatusMessage(null);
-  };
-
-  return { saveContact, isLoading, statusMessage, clearMessage };
+  return { saveContact, isLoading, errorMessage };
 };
