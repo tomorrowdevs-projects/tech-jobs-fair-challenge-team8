@@ -8,6 +8,10 @@ export const getContactByIdUrl = (id) => {
   return `${APIBASEURL}/contacts/${id}`;
 };
 
+export const deleteContactByIdUrl = (id) => {
+  return `${APIBASEURL}/contacts/${id}`;
+};
+
 export const saveContactUrl = () => {
   return `${APIBASEURL}/contacts`;
 };

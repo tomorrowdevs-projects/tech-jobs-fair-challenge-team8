@@ -3,22 +3,22 @@ import LoaderDots from "./LoaderDots";
 import { useContactById } from "../api-hooks/useContactById";
 import { useState } from "react";
 import { useUser } from "../user-management/useUser";
+import { useDeleteContactById } from "../api-hooks/useDeleteContactById";
 
 const ContactDetailsModal = ({ contactId, show, onHide }) => {
   const { contact, isLoading } = useContactById(contactId);
+  const { deleteContact } = useDeleteContactById(contactId);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const { isAdmin } = useUser();
-  console.log("isAdmin", isAdmin);
 
   const handleDeleteClick = () => {
     setShowDeleteConfirm(true);
   };
 
   const handleConfirmDelete = () => {
-    // Implement deletion logic here
-    console.log("Deleting contact", contactId);
+    deleteContact(contactId);
     setShowDeleteConfirm(false);
-    onHide(); // Close the details modal as well
+    onHide();
   };
 
   const handleCloseDeleteConfirm = () => {
