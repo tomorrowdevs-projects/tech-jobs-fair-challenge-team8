@@ -14,8 +14,8 @@ const apiCall = async (searchTerm) => {
 const mockApiCall = (searchTerm) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // Simulate a failure 50% of the time
-      if (Math.random() < 0.5) {
+      // Set to true to simulate error
+      if (false) {
         reject("Simulated fetch error");
       } else {
         const filterContacts = (contact) => {

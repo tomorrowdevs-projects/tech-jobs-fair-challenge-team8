@@ -1,11 +1,12 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { UserProvider } from "./user-management/UserProvider";
 import Header from "./components/Header";
 import ContactsView from "./views/ContactsView";
 import ContactFormView from "./views/ContactFormView";
 import UserRoute from "./route-guards/UserRoute";
 import AdminRoute from "./route-guards/AdminRoute";
+import PublicRoute from "./route-guards/PublicRoute";
 import SignupForm from "./components/SignupForm";
 import LoginView from "./views/LoginView";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,8 +17,15 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<LoginView />}></Route>
-          <Route path="/signup" element={<SignupForm />}></Route>
+          <Route path="/" element={<Navigate to="/contacts" replace />} />
+          <Route
+            path="/login"
+            element={<PublicRoute element={<LoginView />} />}
+          ></Route>
+          <Route
+            path="/signup"
+            element={<AdminRoute element={<SignupForm />} />}
+          ></Route>
           <Route
             path="/contacts/add"
             element={<AdminRoute element={<ContactFormView />} />}
@@ -26,6 +34,7 @@ function App() {
             path="/contacts"
             element={<UserRoute element={<ContactsView />} />}
           ></Route>
+          <Route path="*" element={<Navigate to="/contacts" replace />} />
         </Routes>
       </BrowserRouter>
     </UserProvider>
