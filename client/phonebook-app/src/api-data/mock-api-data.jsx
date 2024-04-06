@@ -10,8 +10,8 @@ export const mockApiData = [
     zip_code: "10001",
     country: "Futuria",
     contact_info: [
-      { type: "email", info: "john@example.com" },
-      { type: "phone", info: "234 567 890" },
+      { type: "Email", info: "john@example.com" },
+      { type: "Phone", info: "234 567 890" },
     ],
   },
   {
@@ -25,8 +25,8 @@ export const mockApiData = [
     zip_code: "20002",
     country: "Idealand",
     contact_info: [
-      { type: "email", info: "jane@example.com" },
-      { type: "phone", info: "345 678 901" },
+      { type: "Email", info: "jane@example.com" },
+      { type: "Phone", info: "345 678 901" },
     ],
   },
   {
@@ -40,8 +40,8 @@ export const mockApiData = [
     zip_code: "30003",
     country: "Discovery",
     contact_info: [
-      { type: "email", info: "max@dynatech.com" },
-      { type: "phone", info: "800 123 456" },
+      { type: "Email", info: "max@dynatech.com" },
+      { type: "Phone", info: "800 123 456" },
     ],
   },
   {
@@ -55,8 +55,8 @@ export const mockApiData = [
     zip_code: "40004",
     country: "Moonland",
     contact_info: [
-      { type: "email", info: "luna@mooncorp.com" },
-      { type: "phone", info: "900 234 567" },
+      { type: "Email", info: "luna@mooncorp.com" },
+      { type: "Phone", info: "900 234 567" },
     ],
   },
   {
@@ -70,8 +70,8 @@ export const mockApiData = [
     zip_code: "50005",
     country: "Universe",
     contact_info: [
-      { type: "email", info: "orion@galacticinnovations.com" },
-      { type: "phone", info: "910 345 678" },
+      { type: "Email", info: "orion@galacticinnovations.com" },
+      { type: "Phone", info: "910 345 678" },
     ],
   },
   {
@@ -85,8 +85,8 @@ export const mockApiData = [
     zip_code: "60006",
     country: "Arctica",
     contact_info: [
-      { type: "email", info: "aurora@polarlights.com" },
-      { type: "phone", info: "920 456 789" },
+      { type: "Email", info: "aurora@polarlights.com" },
+      { type: "Phone", info: "920 456 789" },
     ],
   },
   {
@@ -100,8 +100,8 @@ export const mockApiData = [
     zip_code: "70007",
     country: "Naturea",
     contact_info: [
-      { type: "email", info: "leo@jungletech.com" },
-      { type: "phone", info: "930 567 890" },
+      { type: "Email", info: "leo@jungletech.com" },
+      { type: "Phone", info: "930 567 890" },
     ],
   },
   {
@@ -115,8 +115,8 @@ export const mockApiData = [
     zip_code: "80008",
     country: "Egyptia",
     contact_info: [
-      { type: "email", info: "cleo@pharahtech.com" },
-      { type: "phone", info: "940 678 901" },
+      { type: "Email", info: "cleo@pharahtech.com" },
+      { type: "Phone", info: "940 678 901" },
     ],
   },
   {
@@ -130,8 +130,8 @@ export const mockApiData = [
     zip_code: "90009",
     country: "Globus",
     contact_info: [
-      { type: "email", info: "terra@ecosolutions.com" },
-      { type: "phone", info: "950 789 012" },
+      { type: "Email", info: "terra@ecosolutions.com" },
+      { type: "Phone", info: "950 789 012" },
     ],
   },
   {
@@ -145,8 +145,8 @@ export const mockApiData = [
     zip_code: "100010",
     country: "Galaxia",
     contact_info: [
-      { type: "email", info: "nova@starlight.com" },
-      { type: "phone", info: "960 890 123" },
+      { type: "Email", info: "nova@starlight.com" },
+      { type: "Phone", info: "960 890 123" },
     ],
   },
   {
@@ -160,8 +160,8 @@ export const mockApiData = [
     zip_code: "110011",
     country: "Atmos",
     contact_info: [
-      { type: "email", info: "zephyr@windpower.com" },
-      { type: "phone", info: "970 901 234" },
+      { type: "Email", info: "zephyr@windpower.com" },
+      { type: "Phone", info: "970 901 234" },
     ],
   },
   {
@@ -175,8 +175,8 @@ export const mockApiData = [
     zip_code: "120012",
     country: "Terra",
     contact_info: [
-      { type: "email", info: "atlas@globalmapping.com" },
-      { type: "phone", info: "980 012 345" },
+      { type: "Email", info: "atlas@globalmapping.com" },
+      { type: "Phone", info: "980 012 345" },
     ],
   },
 ];
@@ -186,7 +186,8 @@ export const authorizedMockUsers = [
     email: "admin@admin.com",
     password: "password",
     user: {
-      name: "John Doe",
+      firstName: "John",
+      lastName: "Doe",
       email: "admin@admin.com",
       role: "admin",
       token: "adminToken123456",
@@ -196,7 +197,8 @@ export const authorizedMockUsers = [
     email: "user@user.com",
     password: "password",
     user: {
-      name: "Jane Doe",
+      firstName: "Jane",
+      lastName: "Smith",
       email: "user@example.com",
       role: "user",
       token: "userToken123456",

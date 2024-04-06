@@ -1,31 +1,9 @@
 import React, { useState } from "react";
 import { Form, Button, Row, Col, Card } from "react-bootstrap";
+import { contactTypes } from "../util/contact-form-util";
 
-const ContactForm = ({ contact, onSave }) => {
-  const initialFormData = {
-    name: "",
-    surname: "",
-    company: "",
-    job_position: "",
-    address: "",
-    city: "",
-    zip_code: "",
-    country: "",
-    contact_info: [{ type: "", info: "" }],
-  };
-
+const ContactForm = ({ initialFormData, operationType, onSave, onCancel }) => {
   const [formData, setFormData] = useState(initialFormData);
-
-  const contactTypes = [
-    "Home Phone",
-    "Mobile Phone",
-    "Personal Email",
-    "Work Email",
-    "Website",
-    "Telegram",
-    "WhatsApp",
-    "Other",
-  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,10 +32,6 @@ const ContactForm = ({ contact, onSave }) => {
     setFormData({ ...formData, contact_info: updatedDetails });
   };
 
-  const handleResetForm = () => {
-    setFormData(initialFormData);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -71,9 +45,7 @@ const ContactForm = ({ contact, onSave }) => {
       ...formData,
       contact_info: cleanedContactInfo,
     };
-
     onSave(finalContactData);
-    handleResetForm();
   };
 
   return (
@@ -208,15 +180,11 @@ const ContactForm = ({ contact, onSave }) => {
           </Row>
         </Card.Body>
         <Card.Footer className="text-end">
-          <Button
-            variant="secondary"
-            className="me-2"
-            onClick={handleResetForm}
-          >
-            Reset Form
+          <Button variant="secondary" className="me-2" onClick={onCancel}>
+            Cancel
           </Button>
           <Button variant="dark" type="submit">
-            Save Contact
+            {operationType === "edit" ? "Update Contact" : "Save Contact"}
           </Button>
         </Card.Footer>
       </Card>

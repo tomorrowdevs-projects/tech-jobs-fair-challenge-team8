@@ -7,6 +7,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const Header = () => {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
+  const userFullName = `${user?.firstName} ${user?.lastName}`;
 
   const handleLogout = () => {
     setUser(null);
@@ -29,7 +30,7 @@ const Header = () => {
 
               <Dropdown.Menu align="end">
                 <div className="dropdown-item-text">
-                  <strong>{user.name}</strong>
+                  <strong>{userFullName}</strong>
                 </div>
                 {user.role === "admin" && (
                   <Dropdown.Item onClick={() => navigate("/register-user")}>

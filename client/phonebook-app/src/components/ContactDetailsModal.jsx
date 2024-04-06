@@ -4,12 +4,18 @@ import { useContactById } from "../api-hooks/useContactById";
 import { useState } from "react";
 import { useUser } from "../user-management/useUser";
 import { useDeleteContactById } from "../api-hooks/useDeleteContactById";
+import { useNavigate } from "react-router-dom";
 
 const ContactDetailsModal = ({ contactId, show, onHide }) => {
   const { contact, isLoading } = useContactById(contactId);
   const { deleteContact } = useDeleteContactById(contactId);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const { isAdmin } = useUser();
+  const navigate = useNavigate();
+
+  const handleEditClick = () => {
+    navigate("/contacts/edit", { state: { contact } });
+  };
 
   const handleDeleteClick = () => {
     setShowDeleteConfirm(true);
@@ -82,10 +88,7 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
         </Modal.Body>
         {isAdmin && (
           <Modal.Footer>
-            <Button
-              variant="secondary"
-              onClick={() => console.log("Edit contact")}
-            >
+            <Button variant="secondary" onClick={handleEditClick}>
               Edit
             </Button>
             <Button variant="danger" onClick={handleDeleteClick}>

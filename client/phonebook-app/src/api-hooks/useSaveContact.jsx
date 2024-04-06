@@ -41,6 +41,7 @@ export const useSaveContact = () => {
     try {
       // Replace with apiCall when ready.
       await mockApiCall(formData);
+      setIsLoading(false);
     } catch (error) {
       setErrorMessage("Server error. Please try again later.");
       console.error(error);
@@ -49,8 +50,8 @@ export const useSaveContact = () => {
       setTimeout(() => {
         setErrorMessage(null);
       }, 3000);
-    } finally {
       setIsLoading(false);
+      throw error;
     }
   };
 
