@@ -21,6 +21,9 @@ export default function LoginView() {
               {error}
             </Alert>
           )}
+          <div className="text-white">
+            Login with admin@admin.com, password, or user@user.com, password
+          </div>
           <div className="login-form-wrapper">
             <LoginForm onLogin={handleLogin} />
           </div>
