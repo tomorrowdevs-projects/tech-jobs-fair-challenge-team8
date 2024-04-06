@@ -4,7 +4,12 @@ import { getContactsUrl } from "../api-data/apiUrls";
 
 // eslint-disable-next-line no-unused-vars
 const apiCall = async (searchTerm) => {
-  const response = await fetch(getContactsUrl(searchTerm));
+  const token = sessionStorage.getItem("token");
+  const response = await fetch(getContactsUrl(searchTerm), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   if (!response.ok) {
     throw new Error("Server error");
   }

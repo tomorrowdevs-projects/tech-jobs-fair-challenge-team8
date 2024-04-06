@@ -4,7 +4,12 @@ import { getContactByIdUrl } from "../api-data/apiUrls";
 
 // eslint-disable-next-line no-unused-vars
 const apiCall = async (contactId) => {
-  const response = await fetch(getContactByIdUrl(contactId));
+  const token = sessionStorage.getItem("token");
+  const response = await fetch(getContactByIdUrl(contactId), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }

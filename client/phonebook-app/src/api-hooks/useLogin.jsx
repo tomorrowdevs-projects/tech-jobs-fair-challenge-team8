@@ -40,11 +40,18 @@ export function useLogin(navigate) {
   };
 
   const login = async (email, password, onSuccess) => {
+    setError(null);
+
     try {
       // Replace with apiCall when backend is ready
-      const user = await mockApiCall(email, password);
+      const { firstName, lastName, role, token } = await mockApiCall(
+        email,
+        password
+      );
 
-      setUser(user);
+      setUser({ firstName, lastName, role });
+      sessionStorage.setItem("token", token);
+
       if (onSuccess) onSuccess();
     } catch (error) {
       console.error(error);

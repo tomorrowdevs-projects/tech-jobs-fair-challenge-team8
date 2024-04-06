@@ -7,10 +7,12 @@ export const useSaveContact = () => {
 
   // eslint-disable-next-line no-unused-vars
   const apiCall = async (formData) => {
+    const token = sessionStorage.getItem("token");
     const response = await fetch(saveContactUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(formData),
     });
