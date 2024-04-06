@@ -180,3 +180,26 @@ export const mockApiData = [
     ],
   },
 ];
+
+export const authorizedMockUsers = [
+  {
+    email: "admin@admin.com",
+    password: "password",
+    user: {
+      name: "John Doe",
+      email: "admin@admin.com",
+      role: "admin",
+      token: "adminToken123456",
+    },
+  },
+  {
+    email: "user@user.com",
+    password: "password",
+    user: {
+      name: "Jane Doe",
+      email: "user@example.com",
+      role: "user",
+      token: "userToken123456",
+    },
+  },
+];

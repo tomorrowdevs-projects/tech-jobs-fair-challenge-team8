@@ -1,6 +1,7 @@
 import { loginUrl } from "../api-data/apiUrls";
 import { useUser } from "../user-management/useUser";
 import { useState } from "react";
+import { authorizedMockUsers } from "../api-data/mock-api-data";
 
 export function useLogin(navigate) {
   const { setUser } = useUser();
@@ -26,13 +27,11 @@ export function useLogin(navigate) {
   const mockApiCall = async (email, password) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (email === "admin@admin.com" && password === "password") {
-          resolve({
-            name: "John Doe",
-            email: "admin@admin.com",
-            role: "admin",
-            token: "kjooi3j4okllllllkjsdsajdiopsad",
-          });
+        const user = authorizedMockUsers.find(
+          (user) => user.email === email && user.password === password
+        );
+        if (user) {
+          resolve(user.user); // Return the user details without password
         } else {
           reject(new Error("Invalid credentials"));
         }
