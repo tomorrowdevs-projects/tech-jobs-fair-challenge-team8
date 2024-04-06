@@ -7,3 +7,11 @@ export const getContactsUrl = (searchTerm) => {
 export const getContactByIdUrl = (id) => {
   return `${APIBASEURL}/contacts/${id}`;
 };
+
+export const saveContactUrl = () => {
+  return `${APIBASEURL}/contacts`;
+};
+
+export const loginUrl = () => {
+  return `${APIBASEURL}/login`;
+};

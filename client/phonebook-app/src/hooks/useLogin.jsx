@@ -1,3 +1,4 @@
+import { loginUrl } from "../api-data/apiUrls";
 import { useUser } from "../user-management/useUser";
 import { useState } from "react";
 
@@ -7,7 +8,7 @@ export function useLogin(navigate) {
 
   // eslint-disable-next-line no-unused-vars
   const apiCall = async (email, password) => {
-    const response = await fetch("/api/login", {
+    const response = await fetch(loginUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
