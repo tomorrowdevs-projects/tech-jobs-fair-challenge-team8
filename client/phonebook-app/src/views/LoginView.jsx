@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useLogin } from "../api-hooks/useLogin";
 import LoginForm from "../components/LoginForm";
 import { Alert, Container } from "react-bootstrap";
-import "../components-style/login-view.css";
+import "../styles/login-view.css";
 
 export default function LoginView() {
   const navigate = useNavigate();

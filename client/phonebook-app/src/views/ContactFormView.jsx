@@ -3,7 +3,7 @@ import { Container, Alert } from "react-bootstrap";
 import ContactForm from "../components/ContactForm";
 import { useSaveContact } from "../api-hooks/useSaveContact";
 import LoaderDots from "../components/LoaderDots";
-import "../components-style/contact-form-view.css";
+import "../styles/contact-form-view.css";
 
 const ContactFormView = () => {
   const contact = null;

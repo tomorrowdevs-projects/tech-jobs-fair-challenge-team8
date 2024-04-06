@@ -6,7 +6,7 @@ import { useContacts } from "../api-hooks/useContacts"; // Assuming the custom h
 import AddContactButton from "../components/AddContactButton";
 import LoaderDots from "../components/LoaderDots";
 
-import "../components-style/contacts-view.css";
+import "../styles/contacts-view.css";
 
 const ContactsView = () => {
   const [searchTerm, setSearchTerm] = useState("");
