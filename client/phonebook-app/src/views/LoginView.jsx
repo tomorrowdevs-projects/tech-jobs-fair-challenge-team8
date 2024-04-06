@@ -14,19 +14,17 @@ export default function LoginView() {
 
   return (
     <div className="bg-dark">
-      <Container>
-        <div className="login-form-container">
-          {error && (
-            <Alert variant="danger" className="mt-2 w-100 text-center">
-              {error}
-            </Alert>
-          )}
-          <div className="text-white">
-            Login with admin@admin.com, password, or user@user.com, password
-          </div>
-          <div className="login-form-wrapper">
-            <LoginForm onLogin={handleLogin} />
-          </div>
+      <Container className="login-form-container">
+        {error && (
+          <Alert variant="danger" className="mt-2 w-100 text-center">
+            {error}
+          </Alert>
+        )}
+        <div className="login-form-wrapper">
+          <LoginForm onLogin={handleLogin} />
+        </div>
+        <div className="text-white">
+          Login with admin@admin.com, password, or user@user.com, password
         </div>
       </Container>
     </div>
