@@ -1,10 +1,10 @@
 import { Row, Col, Modal, Button } from "react-bootstrap";
-import LoaderDots from "./LoaderDots";
 import { useContactById } from "../api-hooks/useContactById";
 import { useState } from "react";
 import { useUser } from "../user-management/useUser";
 import { useDeleteContactById } from "../api-hooks/useDeleteContactById";
 import { useNavigate } from "react-router-dom";
+import InlineLoaderDots from "./InlineLoaderDots";
 
 const ContactDetailsModal = ({ contactId, show, onHide }) => {
   const { contact, isLoading } = useContactById(contactId);
@@ -37,7 +37,7 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
         <Modal.Header closeButton>
           <Modal.Title>
             {isLoading ? (
-              <LoaderDots />
+              <InlineLoaderDots />
             ) : (
               `${contact?.name} ${contact?.surname}`
             )}
@@ -49,13 +49,13 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
               {isLoading ? (
                 <>
                   <p>
-                    Company: <LoaderDots />
+                    Company: <InlineLoaderDots />
                   </p>
                   <p>
-                    Position: <LoaderDots />
+                    Position: <InlineLoaderDots />
                   </p>
                   <p>
-                    Address: <LoaderDots />
+                    Address: <InlineLoaderDots />
                   </p>
                 </>
               ) : (

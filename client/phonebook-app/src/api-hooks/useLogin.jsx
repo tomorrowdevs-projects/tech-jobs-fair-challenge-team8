@@ -1,7 +1,7 @@
-import { loginUrl } from "../api-data/apiUrls";
+import { loginUrl } from "../util/api-util";
 import { useUser } from "../user-management/useUser";
 import { useState } from "react";
-import { authorizedMockUsers } from "../api-data/mock-api-data";
+import { authorizedMockUsers } from "../util/mock-api-data";
 
 export function useLogin(navigate) {
   const { setUser } = useUser();

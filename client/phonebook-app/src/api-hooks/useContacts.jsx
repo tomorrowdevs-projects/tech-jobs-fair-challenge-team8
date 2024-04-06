@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { mockApiData } from "../util/mockApiData";
-import { getContactsUrl } from "../api-data/apiUrls";
+import { mockApiData } from "../util/mock-api-data";
+import { getContactsUrl } from "../util/api-util";
 
 // eslint-disable-next-line no-unused-vars
 const apiCall = async (searchTerm) => {
@@ -36,7 +36,7 @@ const mockApiCall = (searchTerm) => {
         };
         resolve(mockApiData.filter(filterContacts));
       }
-    }, 2000);
+    }, 3000);
   });
 };
 
