@@ -7,7 +7,7 @@ import ContactFormView from "./views/ContactFormView";
 import UserRoute from "./route-guards/UserRoute";
 import AdminRoute from "./route-guards/AdminRoute";
 import PublicRoute from "./route-guards/PublicRoute";
-import SignupForm from "./components/SignupForm";
+import RegisterUserForm from "./components/RegisterUserForm";
 import LoginView from "./views/LoginView";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -23,8 +23,8 @@ function App() {
             element={<PublicRoute element={<LoginView />} />}
           ></Route>
           <Route
-            path="/signup"
-            element={<AdminRoute element={<SignupForm />} />}
+            path="/register-user"
+            element={<AdminRoute element={<RegisterUserForm />} />}
           ></Route>
           <Route
             path="/contacts/add"

@@ -2,10 +2,13 @@ import { Row, Col, Modal, Button } from "react-bootstrap";
 import LoaderDots from "./LoaderDots";
 import { useContactById } from "../api-hooks/useContactById";
 import { useState } from "react";
+import { useUser } from "../user-management/useUser";
 
 const ContactDetailsModal = ({ contactId, show, onHide }) => {
   const { contact, isLoading } = useContactById(contactId);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const { isAdmin } = useUser();
+  console.log("isAdmin", isAdmin);
 
   const handleDeleteClick = () => {
     setShowDeleteConfirm(true);
@@ -77,17 +80,19 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
             </Col>
           </Row>
         </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={() => console.log("Edit contact")}
-          >
-            Edit
-          </Button>
-          <Button variant="danger" onClick={handleDeleteClick}>
-            Delete
-          </Button>
-        </Modal.Footer>
+        {isAdmin && (
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              onClick={() => console.log("Edit contact")}
+            >
+              Edit
+            </Button>
+            <Button variant="danger" onClick={handleDeleteClick}>
+              Delete
+            </Button>
+          </Modal.Footer>
+        )}
       </Modal>
 
       {/* Confirmation Modal for Deletion */}
@@ -100,6 +105,7 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
           <Modal.Title>Confirm Deletion</Modal.Title>
         </Modal.Header>
         <Modal.Body>Are you sure you want to delete this contact?</Modal.Body>
+
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseDeleteConfirm}>
             Cancel

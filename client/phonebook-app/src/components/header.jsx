@@ -28,14 +28,15 @@ const Header = () => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu align="end">
+                <div className="dropdown-item-text">
+                  <strong>{user.name}</strong>
+                </div>
                 {user.role === "admin" && (
-                  <Dropdown.Item onClick={() => navigate("/signup")}>
-                    Add User
+                  <Dropdown.Item onClick={() => navigate("/register-user")}>
+                    Register User
                   </Dropdown.Item>
                 )}
-                <Dropdown.Item href="#action/3.3" onClick={handleLogout}>
-                  Sign Out
-                </Dropdown.Item>
+                <Dropdown.Item onClick={handleLogout}>Sign Out</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           )}
