@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { mockApiData } from "../api-data/mock-api-data";
-import { getContactByIdUrl } from "../api-data/apiUrls";
+import { mockApiData } from "../util/mock-api-data";
+import { getContactByIdUrl } from "../util/api-util";
 
 // eslint-disable-next-line no-unused-vars
 const apiCall = async (contactId) => {

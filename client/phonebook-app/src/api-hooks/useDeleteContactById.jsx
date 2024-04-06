@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { deleteContactByIdUrl } from "../api-data/apiUrls";
+import { deleteContactByIdUrl } from "../util/api-util";
 
 // eslint-disable-next-line no-unused-vars
 const apiCall = async (contactId) => {

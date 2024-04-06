@@ -22,17 +22,13 @@ const ContactFormView = () => {
   const operationType = contact ? "edit" : "add";
 
   const handleSave = (formData) => {
-    if (operationType === "edit") {
-      const contactToUpdate = { id: contact.id, ...formData };
-      console.log("Updating contact...", contactToUpdate);
-    } else {
-      // Add new contact
-      saveContact(formData)
-        .then(() => navigate("/contacts"))
-        .catch((err) => {
-          console.error("Error saving contact:", err);
-        });
-    }
+    const contactToSave =
+      operationType === "edit" ? { id: contact.id, ...formData } : formData;
+    saveContact(contactToSave)
+      .then(() => navigate("/contacts"))
+      .catch((err) => {
+        console.error("Error saving contact:", err);
+      });
   };
 
   return (

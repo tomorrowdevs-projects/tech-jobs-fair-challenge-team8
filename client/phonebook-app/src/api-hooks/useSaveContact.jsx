@@ -1,20 +1,21 @@
 import { useState } from "react";
-import { saveContactUrl } from "../api-data/apiUrls";
+import { saveContactUrl, getMethod } from "../util/api-util";
 
 export const useSaveContact = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   // eslint-disable-next-line no-unused-vars
-  const apiCall = async (formData) => {
+  const apiCall = async (contactData) => {
     const token = sessionStorage.getItem("token");
+    const method = getMethod(contactData);
     const response = await fetch(saveContactUrl, {
-      method: "POST",
+      method: method,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(contactData),
     });
     if (!response.ok) {
       throw new Error("Failed to save contact");
@@ -22,9 +23,9 @@ export const useSaveContact = () => {
     return await response.json();
   };
 
-  const mockApiCall = async (formData) => {
+  const mockApiCall = async (contactData) => {
     return new Promise((resolve, reject) => {
-      console.log("Mock saving contact:", formData);
+      console.log("Mock saving contact:", contactData);
 
       setTimeout(() => {
         if (true) {
@@ -36,11 +37,11 @@ export const useSaveContact = () => {
     });
   };
 
-  const saveContact = async (formData) => {
+  const saveContact = async (contactData) => {
     setIsLoading(true);
     try {
       // Replace with apiCall when ready.
-      await mockApiCall(formData);
+      await mockApiCall(contactData);
       setIsLoading(false);
     } catch (error) {
       setErrorMessage("Server error. Please try again later.");

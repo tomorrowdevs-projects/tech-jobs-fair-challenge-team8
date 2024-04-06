@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { mockApiData } from "../api-data/mock-api-data";
+import { mockApiData } from "../util/mockApiData";
 import { getContactsUrl } from "../api-data/apiUrls";
 
 // eslint-disable-next-line no-unused-vars
