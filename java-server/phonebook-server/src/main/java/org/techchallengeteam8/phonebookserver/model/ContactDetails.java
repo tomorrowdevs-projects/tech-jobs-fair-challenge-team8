@@ -1,16 +1,14 @@
 package org.techchallengeteam8.phonebookserver.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "contact_details")
 public class ContactDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +16,8 @@ public class ContactDetails {
 
     @ManyToOne
     @JoinColumn(name = "contact_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Contact contact;
 
     @Column(name = "type")

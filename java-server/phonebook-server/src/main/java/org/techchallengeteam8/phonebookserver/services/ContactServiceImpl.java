@@ -1,7 +1,11 @@
 package org.techchallengeteam8.phonebookserver.services;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.techchallengeteam8.phonebookserver.dtos.BasicContactDto;
+import org.techchallengeteam8.phonebookserver.dtos.ExtendedContactDto;
+import org.techchallengeteam8.phonebookserver.mappers.ContactMapper;
 import org.techchallengeteam8.phonebookserver.model.Contact;
 import org.techchallengeteam8.phonebookserver.repositories.ContactRepository;
 
@@ -11,16 +15,25 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ContactServiceImpl implements ContactService {
 
-    private final ContactRepository contactRepository;
-    @Override
-    public List<Contact> getAllContacts() {
+    private final ContactMapper contactMapper;
 
-        return contactRepository.findAll();
+    private final ContactRepository contactRepository;
+
+    @Override
+    public List<BasicContactDto> getAllContacts() {
+        List<Contact> contacts = contactRepository.findAll();
+        return contacts.stream().map(contactMapper::toBaseContactDto).toList();
     }
 
     @Override
-    public Contact getContactById(Long id) {
-        return contactRepository.findById(id).orElse(null);
+    public List<BasicContactDto> searchContacts(String keyword) {
+        return contactRepository.findContactsByKeyword(keyword).stream().map(contactMapper::toBaseContactDto).toList();
+    }
+
+    @Override
+    public ExtendedContactDto getContactById(Long id) {
+        return contactRepository.findById(id).map(contactMapper::toExtendedContactDto).orElseThrow(() ->
+                new EntityNotFoundException("Contact not found"));
     }
 
     @Override
@@ -31,10 +44,5 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void deleteContact(Long id) {
         contactRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Contact> searchContacts(String keyword) {
-        return contactRepository.searchContacts(keyword);
     }
 }

@@ -17,5 +17,7 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
             "OR c.city LIKE %?1% " +
             "OR c.zipCode LIKE %?1% " +
             "OR c.country LIKE %?1%")
-    List<Contact> searchContacts (String keyword);
+    List<Contact> findContactsByKeyword(String keyword);
+
+    Contact findContactByFirstName(String name);
 }
