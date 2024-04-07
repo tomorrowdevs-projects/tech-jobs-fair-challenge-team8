@@ -14,6 +14,7 @@ public class ContactServiceImpl implements ContactService {
     private final ContactRepository contactRepository;
     @Override
     public List<Contact> getAllContacts() {
+
         return contactRepository.findAll();
     }
 
