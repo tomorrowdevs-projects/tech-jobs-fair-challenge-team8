@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
-import { mockApiData } from "../api-data/mock-api-data";
-import { getContactsUrl } from "../api-data/apiUrls";
+import { mockApiData } from "../util/mock-api-data";
+import { getContactsUrl } from "../util/api-util";
 
 // eslint-disable-next-line no-unused-vars
 const apiCall = async (searchTerm) => {
-  const response = await fetch(getContactsUrl(searchTerm));
+  const token = sessionStorage.getItem("token");
+  const response = await fetch(getContactsUrl(searchTerm), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   if (!response.ok) {
     throw new Error("Server error");
   }
@@ -31,7 +36,7 @@ const mockApiCall = (searchTerm) => {
         };
         resolve(mockApiData.filter(filterContacts));
       }
-    }, 2000);
+    }, 3000);
   });
 };
 

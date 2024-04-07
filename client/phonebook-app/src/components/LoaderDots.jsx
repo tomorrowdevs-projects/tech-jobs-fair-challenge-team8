@@ -1,4 +1,4 @@
-import "../components-style/loader-dots.css";
+import "../styles/loader-dots.css";
 
 const LoaderDots = () => (
   <div className="loader-container">

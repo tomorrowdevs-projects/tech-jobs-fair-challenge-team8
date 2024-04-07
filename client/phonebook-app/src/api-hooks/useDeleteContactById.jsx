@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { deleteContactByIdUrl } from "../api-data/apiUrls";
+import { deleteContactByIdUrl } from "../util/api-util";
 
 // eslint-disable-next-line no-unused-vars
 const apiCall = async (contactId) => {
+  const token = sessionStorage.getItem("token");
   const response = await fetch(deleteContactByIdUrl(contactId), {
     method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
   if (!response.ok) {
     throw new Error("Network response was not ok");

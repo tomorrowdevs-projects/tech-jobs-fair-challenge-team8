@@ -19,3 +19,7 @@ export const saveContactUrl = () => {
 export const loginUrl = () => {
   return `${APIBASEURL}/login`;
 };
+
+export const getMethod = (contactData) => {
+  return contactData.id ? "PUT" : "POST";
+};

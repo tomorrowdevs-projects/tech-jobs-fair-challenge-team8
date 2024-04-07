@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import "../components-style/signup-form.css"; // Importa il file CSS per lo stile personalizzato
+import "../styles/signup-form.css"; // Importa il file CSS per lo stile personalizzato
 
 function RegisterUserForm() {
   const [formData, setFormData] = useState({

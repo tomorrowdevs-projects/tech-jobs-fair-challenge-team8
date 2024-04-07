@@ -1,5 +1,5 @@
 import { Card } from "react-bootstrap";
-import "../components-style/contact-card.css";
+import "../styles/contact-card.css";
 
 const ContactCard = ({ contact, handleShowDetails }) => {
   return (
