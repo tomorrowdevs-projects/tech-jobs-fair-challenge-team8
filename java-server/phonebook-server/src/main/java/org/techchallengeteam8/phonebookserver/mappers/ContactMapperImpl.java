@@ -35,10 +35,46 @@ public class ContactMapperImpl implements ContactMapper {
                 .build();
     }
 
+    @Override
+    public Contact mergeToContact(Contact contact, ExtendedContactDto contactDto) {
+        contact.setFirstName(contactDto.getFirstName());
+        contact.setLastName(contactDto.getLastName());
+        contact.setJobTitle(contactDto.getJobTitle());
+        contact.setCompany(contactDto.getCompany());
+        contact.setAddress(contactDto.getAddress());
+        contact.setCity(contactDto.getCity());
+        contact.setZipCode(contactDto.getZipCode());
+        contact.setCountry(contactDto.getCountry());
+        return contact;
+    }
+
+    @Override
+    public Contact toContact(ExtendedContactDto contactDto) {
+        return Contact.builder()
+                .id(contactDto.getId())
+                .firstName(contactDto.getFirstName())
+                .lastName(contactDto.getLastName())
+                .jobTitle(contactDto.getJobTitle())
+                .company(contactDto.getCompany())
+                .address(contactDto.getAddress())
+                .city(contactDto.getCity())
+                .zipCode(contactDto.getZipCode())
+                .country(contactDto.getCountry())
+                .contactDetails(contactDto.getContactDetailsDtos().stream().map(this::toContactDetails).toList())
+                .build();
+    }
+
     private ContactDetailsDto toContactDetailsDto(ContactDetails contactDetails) {
         return ContactDetailsDto.builder()
                 .type(contactDetails.getType())
                 .info(contactDetails.getInfo())
+                .build();
+    }
+
+    private ContactDetails toContactDetails(ContactDetailsDto contactDetailsDto) {
+        return ContactDetails.builder()
+                .type(contactDetailsDto.getType())
+                .info(contactDetailsDto.getInfo())
                 .build();
     }
 }

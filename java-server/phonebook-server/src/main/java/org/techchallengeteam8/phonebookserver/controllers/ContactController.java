@@ -1,10 +1,8 @@
 package org.techchallengeteam8.phonebookserver.controllers;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.techchallengeteam8.phonebookserver.dtos.BasicContactDto;
 import org.techchallengeteam8.phonebookserver.dtos.ExtendedContactDto;
 import org.techchallengeteam8.phonebookserver.services.ContactService;
@@ -26,4 +24,21 @@ public class ContactController {
     public ExtendedContactDto getContactById(@PathVariable Long id) {
         return contactService.getContactById(id);
     }
+
+    @PostMapping("/contacts")
+    public void saveContact(@RequestBody ExtendedContactDto contactDto) {
+        contactService.saveContact(contactDto);
+    }
+
+    @PutMapping("/contacts")
+    public void updateContact(@RequestBody @Valid ExtendedContactDto contactDto) {
+        contactService.saveContact(contactDto);
+    }
+
+    @DeleteMapping("/contacts/{id}")
+    public void deleteContact(@PathVariable Long id) {
+        contactService.deleteContact(id);
+    }
 }
+
+

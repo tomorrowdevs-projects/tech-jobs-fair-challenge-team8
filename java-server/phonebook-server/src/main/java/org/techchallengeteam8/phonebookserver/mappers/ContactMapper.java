@@ -7,4 +7,7 @@ import org.techchallengeteam8.phonebookserver.model.Contact;
 public interface ContactMapper {
     BasicContactDto toBaseContactDto(Contact contact);
     ExtendedContactDto toExtendedContactDto(Contact contact);
+    Contact mergeToContact(Contact contact, ExtendedContactDto contactDto);
+
+    Contact toContact(ExtendedContactDto contactDto);
 }

@@ -1,9 +1,11 @@
 package org.techchallengeteam8.phonebookserver.dtos;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExtendedContactDto {
+    @NotNull
     private Long id;
 
     private String firstName;

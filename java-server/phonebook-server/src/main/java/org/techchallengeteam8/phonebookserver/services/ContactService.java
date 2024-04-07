@@ -10,6 +10,6 @@ public interface ContactService {
     List<BasicContactDto> getAllContacts();
     List<BasicContactDto> searchContacts(String keyword);
     ExtendedContactDto getContactById(Long id);
-    Contact saveContact(Contact contact);
+    Contact saveContact(ExtendedContactDto contactDto);
     void deleteContact(Long id);
 }

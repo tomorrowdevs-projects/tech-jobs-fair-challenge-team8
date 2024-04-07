@@ -8,13 +8,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.techchallengeteam8.phonebookserver.dtos.BasicContactDto;
 import org.techchallengeteam8.phonebookserver.dtos.ContactDetailsDto;
 import org.techchallengeteam8.phonebookserver.dtos.ExtendedContactDto;
+import org.techchallengeteam8.phonebookserver.mappers.ContactMapper;
 import org.techchallengeteam8.phonebookserver.model.Contact;
-import org.techchallengeteam8.phonebookserver.model.ContactDetails;
 import org.techchallengeteam8.phonebookserver.repositories.ContactRepository;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @Sql(scripts = {"classpath:db/insertContactsShort.sql"})
 @SpringBootTest
 class ContactServiceImplTest {
@@ -24,6 +26,9 @@ class ContactServiceImplTest {
 
     @Autowired
     ContactRepository contactRepository;
+
+    @Autowired
+    ContactMapper contactMapper;
 
     @Test
     void getAllContacts() {
@@ -48,28 +53,68 @@ class ContactServiceImplTest {
     void saveContact() {
         List<BasicContactDto> contacts = contactService.getAllContacts();
 
-        ContactDetails contactDetails = ContactDetails.builder()
+        ContactDetailsDto contactDetailsDto = ContactDetailsDto.builder()
                 .type("Email")
                 .info("judith.ross@gmail.com")
                 .build();
-        Contact contact = new Contact();
-        contact.setFirstName("Judith");
-        contact.setLastName("Ross");
-        contact.setJobTitle("Software Engineer");
-        contact.setContactDetails(List.of(contactDetails));
-        contact.setAddress("123 Main St, New York, NY 10001");
+        ExtendedContactDto contactDto = new ExtendedContactDto();
+        contactDto.setFirstName("Judith");
+        contactDto.setLastName("Ross");
+        contactDto.setJobTitle("Software Engineer");
+        contactDto.setContactDetailsDtos(List.of(contactDetailsDto));
+        contactDto.setAddress("123 Main St, New York, NY 10001");
 
-        contactService.saveContact(contact);
+        Contact contact = contactService.saveContact(contactDto);
 
         List<BasicContactDto> newContacts = contactService.getAllContacts();
         assertEquals(contacts.size() + 1, newContacts.size());
+        assertEquals("Judith", contact.getFirstName());
+        assertNotNull(contact.getId());
     }
 
     @Test
+    @Transactional
+    void saveContactWithExistingId() {
+        Long id = contactRepository.findContactByFirstName("John").getId();
+        ContactDetailsDto contactDetailsDto = ContactDetailsDto.builder()
+                .type("Phone")
+                .info("555-1234")
+                .build();
+        ExtendedContactDto contactDto = contactService.getContactById(id);
+        contactDto.setFirstName("Johnny");
+        contactDto.setLastName("Doe");
+        contactDto.setJobTitle("Software Engineer");
+        contactDto.setContactDetailsDtos(List.of(contactDetailsDto));
+        contactDto.setAddress("123 Main St, New York, NY 10001");
+
+        Contact contact = contactService.saveContact(contactDto);
+
+        assertEquals("Johnny", contact.getFirstName());
+        assertEquals("Doe", contact.getLastName());
+        assertEquals("Software Engineer", contact.getJobTitle());
+        assertEquals("123 Main St, New York, NY 10001", contact.getAddress());
+    }
+
+    @Test
+    @Transactional
     void deleteContact() {
+        List<BasicContactDto> contacts = contactService.getAllContacts();
+        Long id = contactRepository.findContactByFirstName("John").getId();
+        contactService.deleteContact(id);
+        List<BasicContactDto> newContacts = contactService.getAllContacts();
+        assertEquals(contacts.size() - 1, newContacts.size());
     }
 
     @Test
     void searchContacts() {
+        List<BasicContactDto> contacts = contactService.searchContacts("John");
+        assertEquals(1, contacts.size());
+        assertEquals("John", contacts.get(0).getFirstName());
+    }
+
+    @Test
+    void searchContacts2() {
+        List<BasicContactDto> contacts = contactService.searchContacts("J");
+        assertEquals(2, contacts.size());
     }
 }

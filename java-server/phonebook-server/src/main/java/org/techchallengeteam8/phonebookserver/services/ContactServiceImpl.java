@@ -37,12 +37,25 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public Contact saveContact(Contact contact) {
+    public Contact saveContact(ExtendedContactDto contactDto) {
+        Contact contact;
+        if (contactDto.getId() != null) {
+            contact = contactRepository.findById(contactDto.getId()).
+                    map(existringContact -> contactMapper.mergeToContact(existringContact, contactDto)).
+                    orElseThrow(() ->
+                    new EntityNotFoundException("Contact not found with ID: " + contactDto.getId()));
+        } else {
+            contact = contactMapper.toContact(contactDto);
+        }
         return contactRepository.save(contact);
     }
 
     @Override
     public void deleteContact(Long id) {
-        contactRepository.deleteById(id);
+        try {
+            contactRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new EntityNotFoundException("Contact not found with ID: " + id);
+        }
     }
 }
