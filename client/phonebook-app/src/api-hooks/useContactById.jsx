@@ -16,6 +16,7 @@ const apiCall = async (contactId) => {
   return await response.json();
 };
 
+// eslint-disable-next-line no-unused-vars
 const mockApiCall = async (contactId) => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -35,8 +36,9 @@ export const useContactById = (contactId) => {
       setIsLoading(true);
       try {
         // Replace with apiCall when ready.
-        const data = await mockApiCall(id);
+        const data = await apiCall(id);
         setContact(data);
+        console.log(data);
       } catch (error) {
         setError(error.message);
         console.log(error);

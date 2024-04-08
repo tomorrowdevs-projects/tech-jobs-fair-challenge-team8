@@ -53,8 +53,9 @@ export const useContacts = (searchTerm) => {
     const fetchData = async () => {
       // Replace with apiCall when ready.
       try {
-        const data = await mockApiCall(searchTerm);
+        const data = await apiCall(searchTerm);
         setContacts(data);
+        console.log(data);
       } catch (error) {
         setError("Failed to fetch contacts. Please try again later.");
         console.error(error);
