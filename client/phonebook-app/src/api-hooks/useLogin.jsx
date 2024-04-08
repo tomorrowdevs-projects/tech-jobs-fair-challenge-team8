@@ -1,4 +1,4 @@
-import { loginUrl } from "../util/api-util";
+import { getLoginUrl } from "../util/api-util";
 import { useUser } from "../user-management/useUser";
 import { useState } from "react";
 import { authorizedMockUsers } from "../util/mock-api-data";
@@ -9,7 +9,7 @@ export function useLogin(navigate) {
 
   // eslint-disable-next-line no-unused-vars
   const apiCall = async (email, password) => {
-    const response = await fetch(loginUrl, {
+    const response = await fetch(getLoginUrl(), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,10 +20,10 @@ export function useLogin(navigate) {
     if (!response.ok) {
       throw new Error("Invalid credentials");
     }
-
     return await response.json();
   };
 
+  // eslint-disable-next-line no-unused-vars
   const mockApiCall = async (email, password) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -44,7 +44,7 @@ export function useLogin(navigate) {
 
     try {
       // Replace with apiCall when backend is ready
-      const { firstName, lastName, role, token } = await mockApiCall(
+      const { firstName, lastName, role, token } = await apiCall(
         email,
         password
       );
