@@ -9,10 +9,10 @@ const ContactCard = ({ contact, handleShowDetails }) => {
     >
       <Card.Body>
         <Card.Title>
-          {contact.name} {contact.surname}
+          {contact.firstName} {contact.lastName}
         </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
-          {contact.company} - {contact.job_position}
+          {contact.company} - {contact.jobTitle}
         </Card.Subtitle>
       </Card.Body>
     </Card>

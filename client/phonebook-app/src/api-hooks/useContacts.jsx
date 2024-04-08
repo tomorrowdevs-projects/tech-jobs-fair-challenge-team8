@@ -16,6 +16,7 @@ const apiCall = async (searchTerm) => {
   return await response.json();
 };
 
+// eslint-disable-next-line no-unused-vars
 const mockApiCall = (searchTerm) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -26,12 +27,12 @@ const mockApiCall = (searchTerm) => {
         const filterContacts = (contact) => {
           if (!searchTerm) return true;
           return (
-            contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            contact.surname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            contact.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            contact.job_position
+            contact.firstName
               .toLowerCase()
-              .includes(searchTerm.toLowerCase())
+              .includes(searchTerm.toLowerCase()) ||
+            contact.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            contact.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            contact.jobTitle.toLowerCase().includes(searchTerm.toLowerCase())
           );
         };
         resolve(mockApiData.filter(filterContacts));

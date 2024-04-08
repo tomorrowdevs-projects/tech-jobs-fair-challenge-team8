@@ -16,34 +16,34 @@ const ContactForm = ({ initialFormData, operationType, onSave, onCancel }) => {
   const handleAddDetail = () => {
     setFormData({
       ...formData,
-      contact_info: [...formData.contact_info, { type: "", info: "" }],
+      contactDetails: [...formData.contactDetails, { type: "", info: "" }],
     });
   };
 
   const handleRemoveDetail = (index) => {
-    const newDetails = formData.contact_info.filter((_, i) => i !== index);
-    setFormData({ ...formData, contact_info: newDetails });
+    const newDetails = formData.contactDetails.filter((_, i) => i !== index);
+    setFormData({ ...formData, contactDetails: newDetails });
   };
 
   const handleDetailChange = (e, index, field) => {
-    const updatedDetails = formData.contact_info.map((entry, i) =>
+    const updatedDetails = formData.contactDetails.map((entry, i) =>
       i === index ? { ...entry, [field]: e.target.value } : entry
     );
-    setFormData({ ...formData, contact_info: updatedDetails });
+    setFormData({ ...formData, contactDetails: updatedDetails });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Filter out empty contact info entries
-    const cleanedContactInfo = formData.contact_info.filter(
+    const cleanedContactInfo = formData.contactDetails.filter(
       (entry) => entry.type !== "" && entry.info !== ""
     );
 
     // Prepare the final contact object, excluding empty contact info entries
     const finalContactData = {
       ...formData,
-      contact_info: cleanedContactInfo,
+      contactDetails: cleanedContactInfo,
     };
     onSave(finalContactData);
   };
@@ -60,8 +60,8 @@ const ContactForm = ({ initialFormData, operationType, onSave, onCancel }) => {
                 <Form.Control
                   type="text"
                   placeholder="Enter First Name"
-                  name="name"
-                  value={formData.name}
+                  name="firstName"
+                  value={formData.firstName}
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -70,8 +70,8 @@ const ContactForm = ({ initialFormData, operationType, onSave, onCancel }) => {
                 <Form.Control
                   type="text"
                   placeholder="Enter Last Name"
-                  name="surname"
-                  value={formData.surname}
+                  name="lastName"
+                  value={formData.lastName}
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -86,12 +86,12 @@ const ContactForm = ({ initialFormData, operationType, onSave, onCancel }) => {
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Job Position</Form.Label>
+                <Form.Label>Job Title</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter Job Position"
-                  name="job_position"
-                  value={formData.job_position}
+                  placeholder="Enter Job Title"
+                  name="jobTitle"
+                  value={formData.jobTitle}
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -120,8 +120,8 @@ const ContactForm = ({ initialFormData, operationType, onSave, onCancel }) => {
                 <Form.Control
                   type="text"
                   placeholder="Enter Zip Code"
-                  name="zip_code"
-                  value={formData.zip_code}
+                  name="zipCode"
+                  value={formData.zipCode}
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -139,7 +139,7 @@ const ContactForm = ({ initialFormData, operationType, onSave, onCancel }) => {
             {/* Second column for dynamic contact details */}
             <Col md={6}>
               <p>Contact Details</p>
-              {formData.contact_info.map((entry, index) => (
+              {formData.contactDetails.map((entry, index) => (
                 <Row key={index} className="mb-2">
                   <Col>
                     <Form.Select

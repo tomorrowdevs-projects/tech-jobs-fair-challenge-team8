@@ -39,7 +39,7 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
             {isLoading ? (
               <InlineLoaderDots />
             ) : (
-              `${contact?.name} ${contact?.surname}`
+              `${contact?.firstName} ${contact?.lastName}`
             )}
           </Modal.Title>
         </Modal.Header>
@@ -64,12 +64,12 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
                     Company: <strong>{contact?.company}</strong>
                   </p>
                   <p>
-                    Position: <strong>{contact?.job_position}</strong>
+                    Job Title: <strong>{contact?.jobTitle}</strong>
                   </p>
                   <p>
                     Address:{" "}
                     <strong>
-                      {contact?.address}, {contact?.city}, {contact?.zip_code},{" "}
+                      {contact?.address}, {contact?.city}, {contact?.zipCode},{" "}
                       {contact?.country}
                     </strong>
                   </p>
@@ -77,10 +77,10 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
               )}
             </Col>
             <Col xs={12} md={6}>
-              {contact?.contact_info?.map((info, index) => (
+              {contact?.contactDetails?.map((entry, index) => (
                 <p key={index}>
-                  {info.type.charAt(0).toUpperCase() + info.type.slice(1)}:{" "}
-                  <strong>{info.info}</strong>
+                  {entry.type.charAt(0).toUpperCase() + entry.type.slice(1)}:{" "}
+                  <strong>{entry.info}</strong>
                 </p>
               ))}
             </Col>
