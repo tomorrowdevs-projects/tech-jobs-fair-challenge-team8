@@ -1,6 +1,5 @@
 package org.techchallengeteam8.phonebookserver.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +44,8 @@ class AuthControllerTest {
         var loginRequest = LoginRequest.builder().email("admin@admin.com").password("password").build();
 
         mockMvc.perform(post("/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(loginRequest)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(loginRequest)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.email").value("admin@admin.com"));
     }
@@ -57,8 +56,8 @@ class AuthControllerTest {
                 .password("password").build();
 
         mockMvc.perform(post("/signup")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(signupRequest)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(signupRequest)))
                 .andExpect(status().is(201));
     }
 }

@@ -9,7 +9,6 @@ import org.techchallengeteam8.phonebookserver.dtos.BasicContactDto;
 import org.techchallengeteam8.phonebookserver.dtos.ContactDetailsDto;
 import org.techchallengeteam8.phonebookserver.dtos.ExtendedContactDto;
 import org.techchallengeteam8.phonebookserver.mappers.ContactMapper;
-import org.techchallengeteam8.phonebookserver.model.Contact;
 import org.techchallengeteam8.phonebookserver.repositories.ContactRepository;
 
 import java.util.List;
@@ -46,7 +45,7 @@ class ContactServiceImplTest {
                 .build();
         ExtendedContactDto contactDto = contactService.getContactById(id);
         assertEquals("John", contactDto.getFirstName());
-        assertEquals(contactDetailsDto, contactDto.getContactDetailsDtos().get(0));
+        assertEquals(contactDetailsDto, contactDto.getContactDetails().get(0));
     }
 
     @Test
@@ -61,10 +60,10 @@ class ContactServiceImplTest {
         contactDto.setFirstName("Judith");
         contactDto.setLastName("Ross");
         contactDto.setJobTitle("Software Engineer");
-        contactDto.setContactDetailsDtos(List.of(contactDetailsDto));
+        contactDto.setContactDetails(List.of(contactDetailsDto));
         contactDto.setAddress("123 Main St, New York, NY 10001");
 
-        Contact contact = contactService.saveContact(contactDto);
+        ExtendedContactDto contact = contactService.saveContact(contactDto);
 
         List<BasicContactDto> newContacts = contactService.getAllContacts();
         assertEquals(contacts.size() + 1, newContacts.size());
@@ -84,10 +83,10 @@ class ContactServiceImplTest {
         contactDto.setFirstName("Johnny");
         contactDto.setLastName("Doe");
         contactDto.setJobTitle("Software Engineer");
-        contactDto.setContactDetailsDtos(List.of(contactDetailsDto));
+        contactDto.setContactDetails(List.of(contactDetailsDto));
         contactDto.setAddress("123 Main St, New York, NY 10001");
 
-        Contact contact = contactService.saveContact(contactDto);
+        ExtendedContactDto contact = contactService.saveContact(contactDto);
 
         assertEquals("Johnny", contact.getFirstName());
         assertEquals("Doe", contact.getLastName());

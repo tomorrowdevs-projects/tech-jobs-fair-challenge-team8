@@ -71,7 +71,7 @@ class ContactControllerTest {
                 .city("Anytown")
                 .zipCode("12345")
                 .country("USA")
-                .contactDetailsDtos(List.of(
+                .contactDetails(List.of(
                         ContactDetailsDto.builder()
                                 .type("Email")
                                 .info("judith@gmail.com")
@@ -106,7 +106,7 @@ class ContactControllerTest {
                 .city("Anytown")
                 .zipCode("12345")
                 .country("USA")
-                .contactDetailsDtos(List.of(
+                .contactDetails(List.of(
                         ContactDetailsDto.builder()
                                 .type("Email")
                                 .info("xyz@xyz.com")

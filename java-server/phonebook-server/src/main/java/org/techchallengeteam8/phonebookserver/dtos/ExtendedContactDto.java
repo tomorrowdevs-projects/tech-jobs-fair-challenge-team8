@@ -33,7 +33,7 @@ public class ExtendedContactDto {
 
     private String country;
 
-    private List<ContactDetailsDto> contactDetailsDtos;
+    private List<ContactDetailsDto> contactDetails;
 }
 
 

@@ -16,7 +16,8 @@ public class ContactController {
     private final ContactService contactService;
 
     @GetMapping("/contacts")
-    public List<BasicContactDto> searchContacts(@RequestParam(value= "search") String keyword) {
+    public List<BasicContactDto> searchContacts(@RequestParam(value= "search",
+            defaultValue="") String keyword) {
         return contactService.searchContacts(keyword);
     }
 
@@ -26,13 +27,14 @@ public class ContactController {
     }
 
     @PostMapping("/contacts")
-    public void saveContact(@RequestBody ExtendedContactDto contactDto) {
-        contactService.saveContact(contactDto);
+    public ExtendedContactDto saveContact(@RequestBody ExtendedContactDto contactDto) {
+
+        return contactService.saveContact(contactDto);
     }
 
     @PutMapping("/contacts")
-    public void updateContact(@RequestBody @Valid ExtendedContactDto contactDto) {
-        contactService.saveContact(contactDto);
+    public ExtendedContactDto updateContact(@RequestBody @Valid ExtendedContactDto contactDto) {
+        return contactService.saveContact(contactDto);
     }
 
     @DeleteMapping("/contacts/{id}")

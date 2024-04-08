@@ -25,11 +25,14 @@ class AuthServiceImplTest {
 
     @Test
     void signup() {
+        long previousCount = userRepository.count();
+
         SignupRequest request = SignupRequest.builder().firstName("Jane").lastName("MMM").email("jane@user.com")
                 .password("password").build();
 
         authService.signup(request);
-        assertEquals(1, userRepository.count());
+        long currentCount = userRepository.count();
+        assertEquals(previousCount + 1, currentCount);
     }
 
     @Test

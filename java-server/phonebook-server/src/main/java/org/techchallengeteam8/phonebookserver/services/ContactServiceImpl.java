@@ -37,7 +37,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public Contact saveContact(ExtendedContactDto contactDto) {
+    public ExtendedContactDto saveContact(ExtendedContactDto contactDto) {
         Contact contact;
         if (contactDto.getId() != null) {
             contact = contactRepository.findById(contactDto.getId()).
@@ -47,7 +47,8 @@ public class ContactServiceImpl implements ContactService {
         } else {
             contact = contactMapper.toContact(contactDto);
         }
-        return contactRepository.save(contact);
+        Contact newContact = contactRepository.save(contact);
+        return contactMapper.toExtendedContactDto(newContact);
     }
 
     @Override

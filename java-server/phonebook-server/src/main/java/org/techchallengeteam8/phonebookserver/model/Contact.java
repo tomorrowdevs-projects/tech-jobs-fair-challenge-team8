@@ -40,6 +40,6 @@ public class Contact {
     @Column(name="country")
     private String country;
 
-    @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ContactDetails> contactDetails;
 }
