@@ -6,7 +6,7 @@ import { useDeleteContactById } from "../api-hooks/useDeleteContactById";
 import { useNavigate } from "react-router-dom";
 import InlineLoaderDots from "./InlineLoaderDots";
 
-const ContactDetailsModal = ({ contactId, show, onHide }) => {
+const ContactDetailsModal = ({ contactId, show, onHide, onDelete }) => {
   const { contact, isLoading } = useContactById(contactId);
   const { deleteContact } = useDeleteContactById(contactId);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -21,9 +21,10 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
     setShowDeleteConfirm(true);
   };
 
-  const handleConfirmDelete = () => {
-    deleteContact(contactId);
+  const handleConfirmDelete = async () => {
+    await deleteContact(contactId);
     setShowDeleteConfirm(false);
+    onDelete();
     onHide();
   };
 
@@ -39,7 +40,7 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
             {isLoading ? (
               <InlineLoaderDots />
             ) : (
-              `${contact?.name} ${contact?.surname}`
+              `${contact?.firstName} ${contact?.lastName}`
             )}
           </Modal.Title>
         </Modal.Header>
@@ -64,12 +65,12 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
                     Company: <strong>{contact?.company}</strong>
                   </p>
                   <p>
-                    Position: <strong>{contact?.job_position}</strong>
+                    Job Title: <strong>{contact?.jobTitle}</strong>
                   </p>
                   <p>
                     Address:{" "}
                     <strong>
-                      {contact?.address}, {contact?.city}, {contact?.zip_code},{" "}
+                      {contact?.address}, {contact?.city}, {contact?.zipCode},{" "}
                       {contact?.country}
                     </strong>
                   </p>
@@ -77,10 +78,10 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
               )}
             </Col>
             <Col xs={12} md={6}>
-              {contact?.contact_info?.map((info, index) => (
+              {contact?.contactDetails?.map((entry, index) => (
                 <p key={index}>
-                  {info.type.charAt(0).toUpperCase() + info.type.slice(1)}:{" "}
-                  <strong>{info.info}</strong>
+                  {entry.type.charAt(0).toUpperCase() + entry.type.slice(1)}:{" "}
+                  <strong>{entry.info}</strong>
                 </p>
               ))}
             </Col>

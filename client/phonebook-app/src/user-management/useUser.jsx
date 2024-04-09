@@ -6,7 +6,7 @@ export const useUser = () => {
 
   const isUser = Boolean(user);
 
-  const isAdmin = isUser && user.role === "admin";
+  const isAdmin = isUser && user.role === "ROLE_ADMIN";
 
   return { user, setUser, isUser, isAdmin };
 };

@@ -15,6 +15,7 @@ const apiCall = async (contactId) => {
   }
 };
 
+// eslint-disable-next-line no-unused-vars
 const mockApiCall = async (contactId) => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -30,7 +31,8 @@ export const useDeleteContactById = () => {
   const deleteContact = async (contactId) => {
     try {
       // Replace with apiCall when ready.
-      await mockApiCall(contactId);
+      await apiCall(contactId);
+      console.log("Contact deleted: " + contactId);
     } catch (error) {
       setError(error.message);
 

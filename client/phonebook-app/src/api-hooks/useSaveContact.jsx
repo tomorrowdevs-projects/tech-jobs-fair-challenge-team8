@@ -9,7 +9,7 @@ export const useSaveContact = () => {
   const apiCall = async (contactData) => {
     const token = sessionStorage.getItem("token");
     const method = getMethod(contactData);
-    const response = await fetch(saveContactUrl, {
+    const response = await fetch(saveContactUrl(), {
       method: method,
       headers: {
         "Content-Type": "application/json",
@@ -23,6 +23,7 @@ export const useSaveContact = () => {
     return await response.json();
   };
 
+  // eslint-disable-next-line no-unused-vars
   const mockApiCall = async (contactData) => {
     return new Promise((resolve, reject) => {
       console.log("Mock saving contact:", contactData);
@@ -41,8 +42,9 @@ export const useSaveContact = () => {
     setIsLoading(true);
     try {
       // Replace with apiCall when ready.
-      await mockApiCall(contactData);
+      await apiCall(contactData);
       setIsLoading(false);
+      console.log("Contact saved: " + contactData);
     } catch (error) {
       setErrorMessage("Server error. Please try again later.");
       console.error(error);

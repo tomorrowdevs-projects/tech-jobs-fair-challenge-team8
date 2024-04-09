@@ -1,28 +1,28 @@
 export const copyContactFormData = (contact) => {
   return {
-    name: contact.name,
-    surname: contact.surname,
+    firstName: contact.firstName,
+    lastName: contact.lastName,
     company: contact.company,
-    job_position: contact.job_position,
+    jobTitle: contact.jobTitle,
     address: contact.address,
     city: contact.city,
-    zip_code: contact.zip_code,
+    zipCode: contact.zipCode,
     country: contact.country,
-    contact_info: contact.contact_info.map((info) => ({ ...info })),
+    contactDetails: contact.contactDetails.map((entry) => ({ ...entry })),
   };
 };
 
 export const getInitialFormData = () => {
   return {
-    name: "",
-    surname: "",
+    firstName: "",
+    lastName: "",
     company: "",
-    job_position: "",
+    jobTitle: "",
     address: "",
     city: "",
-    zip_code: "",
+    zipCode: "",
     country: "",
-    contact_info: [{ type: "", info: "" }],
+    contactDetails: [{ type: "", info: "" }],
   };
 };
 

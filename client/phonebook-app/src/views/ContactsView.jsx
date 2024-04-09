@@ -10,8 +10,16 @@ import "../styles/contacts-view.css";
 
 const ContactsView = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [refreshCounter, setRefreshCounter] = useState(0);
 
-  const { contacts, isLoading, error } = useContacts(searchTerm);
+  const { contacts, isLoading, error } = useContacts(
+    searchTerm,
+    refreshCounter
+  );
+
+  const triggerRefresh = () => {
+    setRefreshCounter((prevCount) => prevCount + 1);
+  };
 
   return (
     <Container>
@@ -27,7 +35,7 @@ const ContactsView = () => {
           <AddContactButton />
         </Col>
       </Row>
-      <ContactsGrid contacts={contacts} />
+      <ContactsGrid contacts={contacts} onDelete={triggerRefresh} />
     </Container>
   );
 };

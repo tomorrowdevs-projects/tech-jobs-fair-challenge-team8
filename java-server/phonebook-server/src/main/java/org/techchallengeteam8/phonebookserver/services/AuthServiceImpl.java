@@ -36,7 +36,7 @@ public class AuthServiceImpl implements AuthService {
     public void signup(SignupRequest request) {
         var user = User.builder().email(request.getEmail()).firstName(request.getFirstName())
                 .lastName(request.getLastName()).password(passwordEncoder.encode(request.getPassword()))
-                .role(User.Role.ROLE_ADMIN).build();
+                .role(User.Role.ROLE_USER).build();
         userRepository.save(user);
     }
 }

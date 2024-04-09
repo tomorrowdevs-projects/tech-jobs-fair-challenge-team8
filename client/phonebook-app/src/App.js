@@ -28,7 +28,7 @@ function App() {
           ></Route>
           <Route
             path="/contacts/add"
-            element={<AdminRoute element={<ContactFormView />} />}
+            element={<UserRoute element={<ContactFormView />} />}
           />
           <Route
             path="/contacts/edit"

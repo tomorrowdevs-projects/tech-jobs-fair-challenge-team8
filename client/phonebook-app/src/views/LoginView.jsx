@@ -23,9 +23,6 @@ export default function LoginView() {
         <div className="login-form-wrapper">
           <LoginForm onLogin={handleLogin} />
         </div>
-        <div className="text-white">
-          Login with admin@admin.com, password, or user@user.com, password
-        </div>
       </Container>
     </div>
   );

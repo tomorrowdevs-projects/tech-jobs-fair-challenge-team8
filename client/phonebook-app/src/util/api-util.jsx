@@ -1,4 +1,4 @@
-const APIBASEURL = "http://127.0.0.1:8000";
+const APIBASEURL = process.env.REACT_APP_API_URL;
 
 export const getContactsUrl = (searchTerm) => {
   return `${APIBASEURL}/contacts?search=${searchTerm}`;
@@ -16,7 +16,7 @@ export const saveContactUrl = () => {
   return `${APIBASEURL}/contacts`;
 };
 
-export const loginUrl = () => {
+export const getLoginUrl = () => {
   return `${APIBASEURL}/login`;
 };
 
