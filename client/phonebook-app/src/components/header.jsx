@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#" onClick={() => navigate("/contacts")}>
+        <Navbar.Brand onClick={() => navigate("/contacts")}>
           <strong>TechSolutions Inc.</strong> Phonebook
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
