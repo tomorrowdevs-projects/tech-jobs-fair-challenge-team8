@@ -6,7 +6,7 @@ import { useDeleteContactById } from "../api-hooks/useDeleteContactById";
 import { useNavigate } from "react-router-dom";
 import InlineLoaderDots from "./InlineLoaderDots";
 
-const ContactDetailsModal = ({ contactId, show, onHide }) => {
+const ContactDetailsModal = ({ contactId, show, onHide, onDelete }) => {
   const { contact, isLoading } = useContactById(contactId);
   const { deleteContact } = useDeleteContactById(contactId);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -21,9 +21,10 @@ const ContactDetailsModal = ({ contactId, show, onHide }) => {
     setShowDeleteConfirm(true);
   };
 
-  const handleConfirmDelete = () => {
-    deleteContact(contactId);
+  const handleConfirmDelete = async () => {
+    await deleteContact(contactId);
     setShowDeleteConfirm(false);
+    onDelete();
     onHide();
   };
 

@@ -41,7 +41,7 @@ const mockApiCall = (searchTerm) => {
   });
 };
 
-export const useContacts = (searchTerm) => {
+export const useContacts = (searchTerm, refreshCounter) => {
   const [contacts, setContacts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -70,7 +70,7 @@ export const useContacts = (searchTerm) => {
     };
 
     fetchData();
-  }, [searchTerm]);
+  }, [searchTerm, refreshCounter]);
 
   return { contacts, isLoading, error };
 };

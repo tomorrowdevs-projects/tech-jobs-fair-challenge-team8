@@ -3,7 +3,7 @@ import { useState } from "react";
 import ContactDetailsModal from "./ContactDetailsModal";
 import ContactCard from "./ContactCard";
 
-const ContactsGrid = ({ contacts }) => {
+const ContactsGrid = ({ contacts, onDelete }) => {
   const [selectedContactId, setSelectedContactId] = useState(null);
 
   const handleShowDetails = (contact) => {
@@ -31,6 +31,7 @@ const ContactsGrid = ({ contacts }) => {
         contactId={selectedContactId}
         show={selectedContactId != null}
         onHide={handleCloseModal}
+        onDelete={onDelete}
       />
     </>
   );
